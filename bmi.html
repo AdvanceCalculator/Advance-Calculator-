@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator - SmartCalc</title>
+    <title>BMI Calculator - SmartCalc</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
@@ -18,18 +18,13 @@
         .container { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; flex: 1; }
         .calc-box { background: #1e293b; border: 1px solid #334155; border-radius: 20px; padding: 2rem; max-width: 600px; margin: 0 auto; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3); }
         .calc-box h2 { margin-bottom: 1.5rem; text-align: center; color: #818cf8; }
-        
+        .form-group { margin-bottom: 1.2rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; color: #94a3b8; font-size: 0.9rem; }
-        
-        /* 3 Input Boxes Layout */
-        .dob-inputs { display: flex; gap: 10px; }
-        .dob-inputs input { width: 100%; padding: 0.8rem 0.5rem; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 1rem; outline: none; text-align: center; }
-        .dob-inputs input:focus { border-color: #4f46e5; }
-
-        .btn-submit { width: 100%; padding: 1rem; background: #4f46e5; color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 1.5rem; }
+        .form-group input { width: 100%; padding: 0.8rem 1rem; background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 1rem; outline: none; }
+        .btn-submit { width: 100%; padding: 1rem; background: #4f46e5; color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 1rem; }
         .btn-submit:hover { background: #4338ca; }
         .result-box { margin-top: 1.5rem; padding: 1.2rem; background: rgba(6, 182, 212, 0.1); border: 1px solid #06b6d4; border-radius: 12px; text-align: center; display: none; }
-        .result-box h3 { color: #06b6d4; font-size: 1.4rem; }
+        .result-box h3 { color: #06b6d4; font-size: 1.6rem; }
         .quick-links-section { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #334155; text-align: center; }
         .quick-links-section h4 { margin-bottom: 1rem; color: #94a3b8; font-size: 0.95rem; }
         .quick-buttons { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
@@ -51,33 +46,36 @@
                 <li><a href="gst.html">GST</a></li>
                 <li><a href="loan.html">Loan</a></li>
                 <li><a href="tax.html">Tax</a></li>
-                <li><a href="age.html" class="active">Age</a></li>
-                <li><a href="bmi.html">BMI</a></li>
+                <li><a href="age.html">Age</a></li>
+                <li><a href="bmi.html" class="active">BMI</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="container">
         <div class="calc-box">
-            <h2>🎂 Age Calculator</h2>
+            <h2>⚖️ BMI Calculator</h2>
             
             <div class="form-group">
-                <label>Enter Date of Birth (DD / MM / YYYY)</label>
-                <div class="dob-inputs">
-                    <input type="number" id="dobDay" placeholder="DD" min="1" max="31">
-                    <input type="number" id="dobMonth" placeholder="MM" min="1" max="12">
-                    <input type="number" id="dobYear" placeholder="YYYY" min="1900" max="2099">
-                </div>
+                <label>Weight (kg)</label>
+                <input type="number" id="weight" value="70">
             </div>
 
-            <button class="btn-submit" onclick="calculateAge()">Calculate Age</button>
+            <div class="form-group">
+                <label>Height (cm)</label>
+                <input type="number" id="height" value="175">
+            </div>
+
+            <button class="btn-submit" onclick="calculateBMI()">Calculate BMI</button>
 
             <div class="result-box" id="resultBox">
-                <p style="color: #94a3b8; font-size: 0.9rem;">Your Exact Age Is</p>
-                <h3 id="ageResult">0 Years, 0 Months, 0 Days</h3>
+                <p style="color: #94a3b8; font-size: 0.9rem;">Your Body Mass Index</p>
+                <h3 id="bmiResult">0</h3>
+                <p style="margin-top: 10px; font-size: 0.95rem; color: #fff;">
+                    Status: <strong id="bmiCategory" style="color: #06b6d4;">-</strong>
+                </p>
             </div>
 
-            <!-- Baki Webpages Par Jane Ke Buttons -->
             <div class="quick-links-section">
                 <h4>Switch to Other Calculators:</h4>
                 <div class="quick-buttons">
@@ -87,7 +85,7 @@
                     <a href="gst.html" class="quick-btn">📊 GST</a>
                     <a href="loan.html" class="quick-btn">💳 Loan</a>
                     <a href="tax.html" class="quick-btn">📝 Tax</a>
-                    <a href="bmi.html" class="quick-btn">⚖️ BMI</a>
+                    <a href="age.html" class="quick-btn">🎂 Age</a>
                 </div>
             </div>
         </div>
@@ -98,44 +96,27 @@
     </footer>
 
     <script>
-        function calculateAge() {
-            const day = parseInt(document.getElementById('dobDay').value);
-            const month = parseInt(document.getElementById('dobMonth').value);
-            const year = parseInt(document.getElementById('dobYear').value);
+        function calculateBMI() {
+            const w = parseFloat(document.getElementById('weight').value);
+            const h = parseFloat(document.getElementById('height').value);
 
-            // Inputs Validation Check
-            if (!day || !month || !year) {
-                alert('Kripya DD, MM aur YYYY teeno boxes bharie!');
+            if (!w || !h) {
+                alert("Please enter weight and height.");
                 return;
             }
 
-            if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2099) {
-                alert('Sahi Date, Month aur Year daalein!');
-                return;
-            }
+            const heightInMeters = h / 100;
+            const bmi = w / (heightInMeters * heightInMeters);
 
-            const dob = new Date(year, month - 1, day);
-            const today = new Date();
+            let category = "";
+            if (bmi < 18.5) category = "Underweight 🟡";
+            else if (bmi >= 18.5 && bmi < 24.9) category = "Normal / Healthy 🟢";
+            else if (bmi >= 25 && bmi < 29.9) category = "Overweight 🟠";
+            else category = "Obese 🔴";
 
-            if (dob > today) {
-                alert('Date of Birth aaj ke din se aage ki nahi ho sakti!');
-                return;
-            }
+            document.getElementById('bmiResult').innerText = bmi.toFixed(1);
+            document.getElementById('bmiCategory').innerText = category;
 
-            let years = today.getFullYear() - dob.getFullYear();
-            let months = today.getMonth() - dob.getMonth();
-            let days = today.getDate() - dob.getDate();
-
-            if (days < 0) {
-                months--;
-                days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-            }
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-
-            document.getElementById('ageResult').innerText = `${years} Years, ${months} Months, ${days} Days`;
             document.getElementById('resultBox').style.display = 'block';
         }
     </script>

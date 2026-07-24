@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartCalc Suite - All-in-One Calculators</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: rgba(30, 41, 59, 0.9); border-bottom: 1px solid #334155; position: sticky; top: 0; z-index: 100; }
+        .navbar { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #f8fafc; text-decoration: none; }
+        .logo span { color: #06b6d4; }
+        .nav-links { display: flex; gap: 0.8rem; list-style: none; flex-wrap: wrap; }
+        .nav-links a { color: #94a3b8; text-decoration: none; font-weight: 500; padding: 0.5rem 0.8rem; border-radius: 8px; transition: 0.3s; font-size: 0.9rem; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background: #4f46e5; }
+        
+        .container { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; flex: 1; }
+        .hero { text-align: center; margin-bottom: 3rem; }
+        .hero h1 { font-size: 2.5rem; color: #f8fafc; margin-bottom: 0.5rem; }
+        .hero p { color: #94a3b8; font-size: 1.1rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 1.8rem; text-decoration: none; color: inherit; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .card:hover { transform: translateY(-5px); border-color: #4f46e5; box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.3); }
+        .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: #38bdf8; }
+        .card p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; }
+        
+        footer { text-align: center; padding: 1.5rem; background: #1e293b; border-top: 1px solid #334155; color: #94a3b8; font-size: 0.85rem; margin-top: auto; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">⚡ Smart<span>Calc</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="normal.html">Normal</a></li>
+                <li><a href="emi.html">EMI</a></li>
+                <li><a href="sip.html">SIP</a></li>
+                <li><a href="fd.html">FD</a></li>
+                <li><a href="gst.html">GST</a></li>
+                <li><a href="loan.html">Loan</a></li>
+                <li><a href="tax.html">Tax</a></li>
+                <li><a href="age.html">Age</a></li>
+                <li><a href="bmi.html">BMI</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="hero">
+            <h1>All-in-One Calculation Suite</h1>
+            <p>Fast, accurate, and simple calculators for your daily needs.</p>
+        </div>
+
+        <div class="grid">
+            <a href="normal.html" class="card">
+                <div>
+                    <div class="card-icon">📱</div>
+                    <h3>Normal Calculator</h3>
+                    <p>Standard basic calculator for daily quick math and calculations.</p>
+                </div>
+            </a>
+
+            <a href="emi.html" class="card">
+                <div>
+                    <div class="card-icon">🏦</div>
+                    <h3>EMI Calculator</h3>
+                    <p>Calculate monthly loan EMIs with interest breakdown instantly.</p>
+                </div>
+            </a>
+
+            <a href="sip.html" class="card">
+                <div>
+                    <div class="card-icon">📈</div>
+                    <h3>SIP Calculator</h3>
+                    <p>Plan your Mutual Fund wealth growth with compound interest.</p>
+                </div>
+            </a>
+
+            <a href="fd.html" class="card">
+                <div>
+                    <div class="card-icon">💰</div>
+                    <h3>FD Calculator</h3>
+                    <p>Check Fixed Deposit maturity amount and total returns.</p>
+                </div>
+            </a>
+
+            <a href="gst.html" class="card">
+                <div>
+                    <div class="card-icon">📊</div>
+                    <h3>GST Calculator</h3>
+                    <p>Add or remove GST taxes easily with standard percentage rates.</p>
+                </div>
+            </a>
+
+            <a href="loan.html" class="card">
+                <div>
+                    <div class="card-icon">💳</div>
+                    <h3>Loan Calculator</h3>
+                    <p>Estimate total payable interest and overall loan costs.</p>
+                </div>
+            </a>
+
+            <a href="tax.html" class="card">
+                <div>
+                    <div class="card-icon">📝</div>
+                    <h3>Income Tax</h3>
+                    <p>Calculate income tax liability based on current slabs.</p>
+                </div>
+            </a>
+
+            <a href="age.html" class="card">
+                <div>
+                    <div class="card-icon">🎂</div>
+                    <h3>Age Calculator</h3>
+                    <p>Calculate exact age in years, months, and days.</p>
+                </div>
+            </a>
+
+            <a href="bmi.html" class="card">
+                <div>
+                    <div class="card-icon">⚖️</div>
+                    <h3>BMI Calculator</h3>
+                    <p>Track your Body Mass Index and health fitness category.</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 SmartCalc Suite. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
